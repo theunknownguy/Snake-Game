@@ -7,11 +7,15 @@
 ##============================================================##
 
 
+import random
+from random import choice
 from random import randrange
 import turtle
 
 # initial heading of turtle is in east (Angle 90 in "logo" mode is east)
-heading = [90]
+###--->improved making intial heading random
+initial_direction=[0,90,180,270]
+heading = [64] #intialise anything it will get replaced
 
 # A list to store the postion of snake
 position = []
@@ -34,12 +38,19 @@ game_no = [0]
 
 def home(x=0, y=0):
     turtle.clearscreen()                  # To clear the whole screen for a new game
-    heading[0] = 90
+    heading[0] = random.choice(initial_direction)
     position.clear()
     food_available[0] = 0
     score[0] = 0
     food_cor[0] = 0
     food_cor[1] = 0
+
+    ###--->adding random BG color +Dark mode(its cool:)
+    bg_colors=["violet","red","purple","green","crimson","orange","gold"]
+    turtle.bgcolor(random.choice(bg_colors))
+    ###--->
+
+
     turtle.mode("logo")                   # Set the turtle in mode "logo"
     turtle.setheading(heading[0])
     turtle.clear()
@@ -85,9 +96,9 @@ def start(x=0, y=0):
     food_turtle = turtle.Turtle()
     food_turtle.hideturtle()
     food_turtle.up()
-    food_turtle.shape("square")
+    food_turtle.shape("circle")
     food_turtle.speed(0)
-    food_turtle.color("blue")
+    food_turtle.color("white")
 
     # Make a new turtle for score
     score_turtle = turtle.Turtle()
